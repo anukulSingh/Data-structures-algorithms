@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <vector>
 
 using namespace std;
 
@@ -61,7 +62,7 @@ using namespace std;
 // check for prime
 // bool isPrime (int n) {
 // 	if (n == 1) return false;
-// 	if (n == 1 || n == 2) return true;
+// 	if (n == 2 || n == 3) return true;
 // 	if (n % 2 == 0 || n % 3 == 0)
 // 		return false;
 // 	for (int i = 5; i*i <= n; i += 6) 
@@ -105,16 +106,64 @@ using namespace std;
 
 // divisors of a number in sorted order
 // theta(sqrt(n))
-void printDivisors(int n) {
-	int i;
-	for (i = 1; i*i < n; ++i)
-		if (n % i == 0) {
-			cout << i <<" ";
-		}
-		--i;
-	for ( ;i >= 1; --i)
-		if (n % i == 0)
-			cout << n/i << " ";
+// void printDivisors(int n) {
+// 	int i;
+// 	for (i = 1; i*i < n; ++i)
+// 		if (n % i == 0) {
+// 			cout << i <<" ";
+// 		}
+// 		--i;
+// 	for ( ;i >= 1; --i)
+// 		if (n % i == 0)
+// 			cout << n/i << " ";
+// }
+
+// Sieve of Erastothenes to print prime numbers
+// void sieve(int n) {
+// 	vector <bool> isPrime(n+1, true);
+// 	for (int i = 2; i*i <= n; ++i) {
+// 		if (isPrime[i]) {
+// 			for (int j = 2*i; j <= n; j = j + i)
+// 				isPrime[j] = false;
+// 		}
+// 	}
+// 	for (int i = 2; i <=n; ++i)
+// 		if(isPrime[i])
+// 			cout << i << " ";
+// }
+
+//optimized sieve O(n loglogn) ~ O(n)
+// void sieve(int n) {
+// 	vector <bool> isPrime(n+1, true);
+// 	for (int i = 2; i <= n; ++i){
+// 		if (isPrime[i]){
+// 			cout << i << " ";
+// 			for (int j = i*i; j <= n; j = j + i)
+// 				isPrime[i] = false;
+// 		}
+// 	}
+// }
+
+// COmputing power  O(log n)
+// int power(int x, int n) {
+// 	if (n == 0)
+// 		return 1;
+// 	int temp = power(x, n/2);
+// 	temp *= temp;
+// 	return (n % 2 == 0) ? temp : temp*x;
+// } 
+
+// Iterative power
+// Binary exponentiation
+int powerIterative(int x, int n) {
+	int res = 1;
+	while (n>0) {
+		if (n & 1)  // n%2!=0 can be written as such, gives non-zero if odd
+			res *= x;
+		x = x*x;
+		n = n>>1; // n/=2 can be written as such
+	}
+	return res;
 }
 
 int main()
@@ -127,6 +176,9 @@ int main()
     // cout << lcm(4, 6);
 	// (isPrime(1031)) ? cout << "Prime" : cout << "Composite";
 	// printPrimeFactors(450);
-	printDivisors(96);
+	// printDivisors(96);
+	// sieve(10000);
+	// cout << power(3,4);
+	cout << powerIterative(4,5);
 	return 0;
 }
