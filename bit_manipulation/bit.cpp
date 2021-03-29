@@ -45,8 +45,16 @@ using namespace std;
 // check whether given no is a power of 2
 // any power of 2 has only one set bit
 
-bool isPow2(int n) {
-    return (n != 0) && ((n & (n - 1)) == 0);
+// bool isPow2(int n) {
+//     return (n != 0) && ((n & (n - 1)) == 0);
+// }
+
+// checking nos in an array whuch ahs odd occurence
+int findOdd (int *arr, int n) {
+    int res = 0;
+    for (int i = 0; i < n; ++i)
+        res = res ^ arr[i];
+    return res;
 }
 
 int main() {
@@ -57,6 +65,8 @@ int main() {
     // initialize();
     // cout << count_set(9);
 
-    isPow2(9) ? cout << ":)" : cout << ":(";
+    // isPow2(9) ? cout << ":)" : cout << ":(";
+    int arr[] = {8,7,7,8,8};
+    cout << findOdd(arr, 5);
     return 0;
 }
