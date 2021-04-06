@@ -5,9 +5,9 @@
 using namespace std;
 
 // count number of digits
-// int count_digit(int n) {
-// 	return (int) (log10 (n) + 1);
-// }
+int count_digit(int n) {
+	return  n > 0 ? (int) (log10 (n) + 1) : (int) (log10 (-n) + 1);
+}
 
 // check for palindrome
 // bool isPalindrome(int n) {
@@ -133,16 +133,16 @@ using namespace std;
 // }
 
 //optimized sieve O(n loglogn) ~ O(n)
-// void sieve(int n) {
-// 	vector <bool> isPrime(n+1, true);
-// 	for (int i = 2; i <= n; ++i){
-// 		if (isPrime[i]){
-// 			cout << i << " ";
-// 			for (int j = i*i; j <= n; j = j + i)
-// 				isPrime[i] = false;
-// 		}
-// 	}
-// }
+void sieve(int n) {
+	vector <bool> isPrime(n+1, true);
+	for (int i = 2; i <= n; ++i){
+		if (isPrime[i]){
+			cout << i << " ";
+			for (int j = i*i; j <= n; j = j + i)
+				isPrime[j] = false;
+		}
+	}
+}
 
 // COmputing power  O(log n)
 // int power(int x, int n) {
@@ -177,8 +177,8 @@ int main()
 	// (isPrime(1031)) ? cout << "Prime" : cout << "Composite";
 	// printPrimeFactors(450);
 	// printDivisors(96);
-	// sieve(10000);
+	// sieve(100);
 	// cout << power(3,4);
-	cout << powerIterative(4,5);
+	// cout << powerIterative(4,5);
 	return 0;
 }

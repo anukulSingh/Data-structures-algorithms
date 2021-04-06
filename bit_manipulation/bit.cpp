@@ -1,4 +1,6 @@
 #include <bits/stdc++.h>
+#define FOR(n) for(int i = 0; i < n; ++i);
+
 using namespace std;
 
 // check if kth bit is set
@@ -50,11 +52,48 @@ using namespace std;
 // }
 
 // checking nos in an array whuch ahs odd occurence
-int findOdd (int *arr, int n) {
-    int res = 0;
-    for (int i = 0; i < n; ++i)
-        res = res ^ arr[i];
-    return res;
+// int findOdd (int *arr, int n) {
+//     int res = 0;
+//     for (int i = 0; i < n; ++i)
+//         res = res ^ arr[i];
+//     return res;
+// }
+
+// checking two  numbers wich has odd occurence
+// void findTwoOdd(int arr[], int n)
+// {
+    
+//         int xors = 0, res1 = 0, res2 = 0; 
+        
+//         for (int i = 0; i < n; i++) 
+//         xors = xors ^ arr[i]; 
+  
+   
+//         int sn = xors & (~(xors - 1)); 
+  
+    
+//         for (int i = 0; i < n; i++) 
+//         { 
+//             if ((arr[i] & sn) != 0) 
+//                 res1 = res1 ^ arr[i]; 
+//             else
+//                 res2 = res2 ^ arr[i]; 
+//         } 
+        
+        
+//         cout <<  res1 << " " << res2;
+// }
+
+// print the power set of a string
+void printPowerSet(string str) {
+    int n = str.length();
+    int powSize = pow(2,n);
+    for (int counter = 0; counter < powSize; ++counter)  {
+        for (int j = 0; j < n; ++j) 
+            if (counter & (1 << j))
+                cout << str[j];
+        cout<<"\n";
+    }
 }
 
 int main() {
@@ -66,7 +105,11 @@ int main() {
     // cout << count_set(9);
 
     // isPow2(9) ? cout << ":)" : cout << ":(";
-    int arr[] = {8,7,7,8,8};
-    cout << findOdd(arr, 5);
+    // int arr[] = {3,4,3,4,5,4,4,6,7,7};
+    // // cout << findOdd(arr, 5);
+    // findTwoOdd(arr,10);
+
+    string str = "abcd";
+    printPowerSet(str);
     return 0;
 }
