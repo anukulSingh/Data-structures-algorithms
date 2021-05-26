@@ -133,16 +133,16 @@ int count_digit(int n) {
 // }
 
 //optimized sieve O(n loglogn) ~ O(n)
-void sieve(int n) {
-	vector <bool> isPrime(n+1, true);
-	for (int i = 2; i <= n; ++i){
-		if (isPrime[i]){
-			cout << i << " ";
-			for (int j = i*i; j <= n; j = j + i)
-				isPrime[j] = false;
-		}
-	}
-}
+//void sieve(int n) {
+	//vector <bool> isPrime(n+1, true);
+	//for (int i = 2; i <= n; ++i){
+	//	if (isPrime[i]){
+	//		cout << i << " ";
+		//	for (int j = i*i; j <= n; j = j + i)
+			//	isPrime[j] = false;
+		//}
+	//}
+//}
 
 // COmputing power  O(log n)
 // int power(int x, int n) {
@@ -168,7 +168,7 @@ int powerIterative(int x, int n) {
 
 int main()
 {
-	// cout << count_digit(1238595739);
+	 cout << count_digit(1238595739);
 	// cout << isPalindrome(4567654);
 	// cout << fact(5);
 	// cout << countTrailingZeroes(125);
