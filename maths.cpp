@@ -5,9 +5,9 @@
 using namespace std;
 
 // count number of digits
-int count_digit(int n) {
-	return  n > 0 ? (int) (log10 (n) + 1) : (int) (log10 (-n) + 1);
-}
+// int count_digit(int n) {
+// 	return  n > 0 ? (int) (log10 (n) + 1) : (int) (log10 (-n) + 1);
+// }
 
 // check for palindrome
 // bool isPalindrome(int n) {
@@ -145,30 +145,30 @@ int count_digit(int n) {
 //}
 
 // COmputing power  O(log n)
-// int power(int x, int n) {
-// 	if (n == 0)
-// 		return 1;
-// 	int temp = power(x, n/2);
-// 	temp *= temp;
-// 	return (n % 2 == 0) ? temp : temp*x;
-// } 
+int power(int x, int n) {
+	if (n == 0)
+		return 1;
+	int temp = power(x, n/2);
+	temp *= temp;
+	return (n % 2 == 0) ? temp : temp*x;
+} 
 
 // Iterative power
 // Binary exponentiation
-int powerIterative(int x, int n) {
-	int res = 1;
-	while (n>0) {
-		if (n & 1)  // n%2!=0 can be written as such, gives non-zero if odd
-			res *= x;
-		x = x*x;
-		n = n>>1; // n/=2 can be written as such
-	}
-	return res;
-}
+// int powerIterative(int x, int n) {
+// 	int res = 1;
+// 	while (n>0) {
+// 		if (n & 1)  // n%2!=0 can be written as such, gives non-zero if odd
+// 			res *= x;
+// 		x = x*x;
+// 		n = n>>1; // n/=2 can be written as such
+// 	}
+// 	return res;
+// }
 
 int main()
 {
-	 cout << count_digit(1238595739);
+	 // cout << count_digit(1238595739);
 	// cout << isPalindrome(4567654);
 	// cout << fact(5);
 	// cout << countTrailingZeroes(125);
@@ -179,6 +179,7 @@ int main()
 	// printDivisors(96);
 	// sieve(100);
 	// cout << power(3,4);
+	cout << power(3, 4);
 	// cout << powerIterative(4,5);
 	return 0;
 }
