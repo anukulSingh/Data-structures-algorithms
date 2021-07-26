@@ -1,4 +1,7 @@
-#include <iostream>
+// #include <iostream>
+// #include <string>
+// #include <cstring>
+#include <bits/stdc++.h>
 using namespace std;
 
 
@@ -42,6 +45,7 @@ using namespace std;
 // }
 
 // check if a string is subsequence of main string
+// like adf is a subsequence of abcdef
 // bool isSubsequence (const string &str1, const string &str2) {
 //     int j = 0;
 //     for (int i = 0; i < str1.length() && j < str2.length(); i++)
@@ -52,18 +56,49 @@ using namespace std;
 
 // check for anagrams
 // naive - sort and compare
-bool isAnagram (const string &str1, const string &str2) {
-    if (str1.length() != str2.length()) return false;
+// bool isAnagram (const string &str1, const string &str2) {
+//     if (str1.length() != str2.length()) return false;
 
-    int count[26] = {0};
-    for (int i = 0; i < str1.length(); ++i) {
-        count[str1[i]]++;
-        count[str2[i]]--;
+//     int count[26] = {0};
+//     for (int i = 0; i < str1.length(); ++i) {
+//         count[str1[i]]++;
+//         count[str2[i]]--;
+//     }
+//     for (int i = 0; i < 26; ++i)
+//         if (count[i] != 0)
+//             return false;
+//     return true;
+// }
+
+// reverse words in a string
+// first reverse each words and then reverse the whole string
+// void reverseWords (char *str, int n) {
+//     int start = 0;
+//     for (int end = 0; end <n ; ++end) {
+//         if (str[end] == ' ') {
+//             reverse(str+start, str+end);
+//             start = end + 1;
+//         }
+//     }
+//     reverse(str + start, str + n);
+//     reverse(str, str + n);
+// }
+
+// bool areSame (int *arr1, int *arr2)
+// check if a pattern or its permutation is present as a substring in a string  
+// Window sliding
+bool isPresent (string &txt, string &pat) {
+    int t_freq[CHAR] = {0}, p_freq[CHAR] = {0};
+    for (int i = 0; i < pat.length(); ++i) {
+        t_freq[txt[i]]++;
+        p_freq[pat[i]]++;
     }
-    for (int i = 0; i < 26; ++i)
-        if (count[i] != 0)
-            return false;
-    return true;
+    for (int i = pat.length(); i < txt.length(); ++i) {
+        if areSame (t_freq, p_freq) return true;
+        t_freq[text[i]]++;
+        p_freq[text[i] - pat.length()]--;
+    }
+    return false;
 }
 
 int main() {
@@ -77,7 +112,15 @@ int main() {
     // string s = "brinjal";
     // isSubsequence(s, "ral") ? cout << "A subsequence" : cout << "not a subsequence";
 
-    isAnagram("silent","listen") ? cout << "An anagram" : cout << "not an anagram";
+    // isAnagram("silent","listen") ? cout << "An anagram" : cout << "not an anagram";
+
+    string s = "India is a beautiful country";
+    int n = s.length(); char str[n];
+    strcpy(str, s.c_str());
+    reverseWords(str, n);
+    for (char x: str) {
+        cout << x << " ";
+    }
 
     return 0;
 }
