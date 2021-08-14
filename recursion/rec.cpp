@@ -46,7 +46,8 @@ using namespace std;
 // }
 
 // SUbsets of a string
-void subset(string s, string curr, int i) {
+// we can generate subsets of "ABC" from "AB" a nd AB from A
+void subset(string &s, string curr = "", int i = 0) {
     if (i == s.length()){
         cout << curr<< " ";
         return;
@@ -69,5 +70,5 @@ int main() {
     // cout << maxPiece(5,2,5,1);
 
     string str = "ABC";
-    cout << subset(str,"",0);
+    cout << subset(str,0);
 }

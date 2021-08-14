@@ -10,6 +10,11 @@ struct Node {
     }
 };
 
+// adv
+// can traverse whole array from any linked list
+// implement algos like round robin
+// can insert at start or end , by maintaining one tail pointer, (useful in queues)
+
 void printList (Node *head) {
     if (head == NULL) return;
     Node *p = head;

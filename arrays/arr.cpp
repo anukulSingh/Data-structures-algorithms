@@ -168,6 +168,69 @@ void reverse (int *arr, int d, int n) {
 // }
 
 
+// Prefix sum technique
+// given l and r, we have many queries to getSum till
+// getSUm(0,3), getSum(2,3) etc
+// void buildPrefixSum (int *arr, int n) {
+//     int prefix_sum[n];
+//     prefix_sum[0] = arr[0];
+//     for (int i = 1; i < n; ++i) {
+//         prefix_sum[i] = prefix_sum[i-1] + arr[i];
+//     }
+// }
+//now to get a sum.
+// we can find any sum in a range, given l and r
+int getSum (int *prefix_sum, int l, int r) {
+    if (l != 0)
+        return (prefix_sum[r] - prefix_sum[l-1]);
+    return prefix_sum[r];
+}
+
+// find eqb point in an array
+// if sum before that element is equal to that of after the element
+// using prefix sum technique
+bool isEqb (int *arr, int n) {
+    int sum = 0;
+    for (int i = 0; i < n; ++i)
+        sum+= arr[i];
+    int l_sum = 0;
+    for (int i = 0; i < n; ++i) {
+        if (l_sum == (sum - arr[i]))  // checking eqb for every point
+            return true;
+        l_sum += arr[i];
+        sum -= arr[i];
+    }
+    return false;
+}
+
+// given n ranges, find maximum appearing element in their ranges
+// ex l[] = {1,2,5,15}, r[] = {5,8,7,18}, l[i] < r[i]
+// then ranges are 1-5, 2-8, 5-7, 15-18
+// here 5 is most frequent among all these ranges
+// and given 0 < l[i], r[i] < 1000
+
+int maxOcc (int *l , int *r, int n) {
+    int arr[1000] = {0};
+    for (int i = 0; i < n; ++i) {
+        arr[l[i]]++;
+        arr[r[i] + 1]--;
+    }
+    // array formed is {0, 1, 2, 3, 2, 2, 1, 0,... }
+    // 0 occurs arr[0] times i.e. 0 times
+    // 1 occurs arr[1] times i.e. 1 time..
+    // 3 occurs arr[3] times i.e. 3 times
+    int maxm = arr[0], res = 0;
+    // while doing prefix sum, check if current_sum > max_sum
+    for (int i = 1; i < 1000; ++i) {
+        arr[i] += arr[i-1];
+        if (maxm < arr[i]) {
+            maxm = arr[i];
+            res = i;
+        }
+        return res;
+    }
+}
+
 
 int main() {
 
@@ -177,10 +240,10 @@ int main() {
     // int arr[] = {10,0,9,0,3,4,0};
     // int price[] = {1,5,3,8,12};
     // int water[] = {3,0,1,2,5};
-    int arr[] = {1,0,0,1,1,1,1,0,0,0,0,1};
+    // int arr[] = {1,0,0,1,1,1,1,0,0,0,0,1};
 
-    int n; cin >> n;
-    cout << n;
+    // int n; cin >> n;
+    // cout << n;
 
     // cout << secondLargest(arr, 4);
     // isSorted(arr, 4) ? cout << "Sorted.." : cout << "Unsorted..";
@@ -202,5 +265,8 @@ int main() {
 
     // for(int x: arr)
     //     cout << x << " ";
+
+    int l[] = {1, 2, 3};
+    int r[] = {3, 5, 7};
     return 0;
 }

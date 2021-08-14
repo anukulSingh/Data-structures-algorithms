@@ -80,7 +80,9 @@ int maxSUmK(int *arr, int n, int k) {
     return max_sum;
 }
 
-// given an unsorted array, find if there subarray with given sum
+// given an unsorted array with non negative eles, find if there subarray with given sum, TC & AS o(n) 
+// if there are both positive and neg eles, we use hashing, with O(n) extra space
+// here add elements to window until same is smaller, if sum exceeds, remove from start
 bool checkSum(int *arr, int n, int sum) {
     int curr_sum = arr[0], s= 0;
     for (int e = 1; e < n; e++) {

@@ -90,6 +90,52 @@ int search (Node *head, int key) {
     return -1;
 }
 
+// middle of a singly linked list
+// void printMiddle (Node *head) {
+//     if (head == NULL) return;
+//     int count = 0;
+//     Node *curr;
+//     for (curr = head; curr != NULL; cur = curr->next) {
+//         count ++;
+//     }
+//     curr = head;
+//     for (int i = 0;  i < count/2; ++i)
+//         curr = curr->next;
+//     cout << curr->data;
+// }
+// efficient solution
+// maintaining slow and fast pointers
+// when fast reaches the end, slow reaches the destination
+// void printMiddle (Node *head) {
+//     if (head == NULL) return;
+//     Node *slow = head, *fast = head;
+//     while ((fast != NULL) && (fast->next != NULL)) {
+//         slow = slow->next;
+//         fast = fast->next->next;
+//     }
+//     cout << slow->data;
+// }
+
+// Nth node from end of ll
+// Naive - find length and traverse from 1 to len-n+1
+// Efficient
+// take two pointers, one at start, other at start+n, move them by one everytime
+// once second reaches null, first reaches the dest
+void printNthEnd (Node *head, int n) {
+    if (head == NULL) return;
+    Node *second = head;
+    for (int i = 0; i < n; ++i){
+        if (head == NULL) return;
+        second = second->next;
+    }
+    Node *first = head;
+    while (second != NULL) {
+        first = first->next;
+        second = second->next;
+    }
+    cout << first->data;
+}
+
 int main() {
     // // simple ll with 3 nodes
     // Node *head = new Node(10);
@@ -117,6 +163,10 @@ int main() {
     Node *head = NULL;
     head = insertAtEnd(head, 40);
     head = insertAtEnd(head, 20);
-    head = insertAtEnd(head, 0);
-    printList(head);
+    head = insertAtEnd(head, 30);
+    head = insertAtEnd(head, 20);
+    head = insertAtEnd(head, 10);
+    // printList(head);
+    // printMiddle(head);
+    printNthEnd(head, 2);
 }

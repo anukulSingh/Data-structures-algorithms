@@ -2,8 +2,8 @@
 #define FOR(a, b) for (int a = 0; a < b; ++a)
 using namespace std;
 
-const int R = 4;
-const int C = 4;
+const int R = 3;
+const int C = 5;
 
 // print matrix in snake order
 // void printSnake (int mat[R][C]) {
@@ -97,27 +97,43 @@ const int C = 4;
 // search in a row-wise column-wise sorted matrix
 // Start from top right
 // if x is smaller move left, if greater move down
-void search (int mat[R][C], int x) {
+// void search (int mat[R][C], int x) {
 
-    int i = 0, j = C-1;
-    while (i < R && j >= 0) {
-        if (mat[i][j] == x) {
-            cout << "Found at (" << i << ", " << j << ")";
-            return; 
+//     int i = 0, j = C-1;
+//     while (i < R && j >= 0) {
+//         if (mat[i][j] == x) {
+//             cout << "Found at (" << i << ", " << j << ")";
+//             return; 
+//         }
+//         else if (mat[i][j] > x) j--;
+//         else i++;
+//     }
+//     cout << "Not found";
+// }
+// median of a row wise sirted matrix
+// TC O(R*log(max - min) * log C) ~= O(R0 ), good for large sized matrix
+int medianRowSorted (int mat[R][C]) {
+    // first find min and max element
+    int min = mat[0][0], max = mat[0][C-1];
+    for (int i = 1; i < R; ++i) {
+        if (mat[i][0] < min) {
+            min = mat[i][0];
         }
-        else if (mat[i][j] > x) j--;
-        else i++;
+        if (mat[i][C-1] > max) {
+            max = mat[i][C-1];
+        }
+        // median position
+        int medPos = (R*C + 1)/2;
     }
-    cout << "Not found";
 }
 int main() {
 
-    int arr[R][C] = {
-                   {1, 2, 3, 4},
-				   {5, 6, 7, 8},
-				   {9, 10, 11, 12},
-				   {13, 14, 15, 16}
-                   };
+    // int arr[R][C] = {
+    //                {1, 2, 3, 4},
+	// 			   {5, 6, 7, 8},
+	// 			   {9, 10, 11, 12},
+	// 			   {13, 14, 15, 16}
+    //                };
 
     // printSnake(arr);
     // printBoundary(arr);
@@ -137,7 +153,14 @@ int main() {
     // }
 
     // printSpiral(arr);
-    search(arr, 10);    
+    // search(arr, 10); 
+
+    int arr[R][C] = {
+        {5, 10, 20, 30, 40},
+        {1, 2, 3, 4, 6},
+        {11, 13, 15, 17, 19}
+    }
+
 
     return 0;
 }
